@@ -65,7 +65,6 @@ class Grafo {
         }
         Collections.reverse(camino);
 
-        System.out.println("La ruta más corta desde " + origen + " hasta " + destino + " es:");
         for (int i = 0; i < camino.size(); i++) {
             System.out.print(camino.get(i));
             if (i < camino.size() - 1) System.out.print(" -> ");
@@ -74,6 +73,7 @@ class Grafo {
 
         return camino;
     }
+
 
     static class Nodo {
         int nodo;

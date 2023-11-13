@@ -31,7 +31,14 @@ public class Main {
         int destino = scanner.nextInt();
 
         grafo.mostrarGrafo();
-        List<Integer> camino = grafo.dijkstra(origen, destino);
-        new VisualizadorGrafo(grafo, camino);
+
+        // Ruta más rápida del nodo de origen al destino
+        System.out.println("Ruta del origen al destino:");
+        List<Integer> caminoOrigenDestino = grafo.dijkstra(origen, destino);
+
+        // Ruta más rápida del destino a la empresa (nodo 0)
+        System.out.println("Ruta del destino a la empresa (nodo 0):");
+        List<Integer> caminoDestinoEmpresa = grafo.dijkstra(destino, 0);
+        new VisualizadorGrafo(grafo, caminoOrigenDestino);
     }
 }

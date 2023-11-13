@@ -1,11 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class VisualizadorGrafo extends JFrame {
     private final Grafo grafo;
     private final List<Integer> camino;
-
+    private final int[][] posicionesNodos; // Almacenará las posiciones de los nodos
 
     public VisualizadorGrafo(Grafo grafo, List<Integer> camino) {
         this.grafo = grafo;
@@ -13,62 +16,86 @@ public class VisualizadorGrafo extends JFrame {
         setTitle("Visualizador de Grafo");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Generar posiciones aleatorias para los nodos antes de hacer visible el JFrame
+        posicionesNodos = new int[grafo.getListaAdyacencia().size()][2];
+        generarPosicionesAleatorias();
+
         setVisible(true);
+    }
+
+    private void generarPosicionesAleatorias() {
+        Random random = new Random();
+        Set<Point> ocupado = new HashSet<>();
+        int padding = 50; // Espacio desde el borde del JFrame
+        int radio = 20; // Radio del nodo
+
+        for (int i = 0; i < grafo.getListaAdyacencia().size(); i++) {
+            int x, y;
+            do {
+                x = padding + random.nextInt(getWidth() - 2 * padding - radio);
+                y = padding + random.nextInt(getHeight() - 2 * padding - radio);
+            } while (!ocupado.add(new Point(x, y))); // Asegura que no haya superposición
+            posicionesNodos[i][0] = x;
+            posicionesNodos[i][1] = y;
+        }
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        List<List<Grafo.Nodo>> listaAdyacencia = grafo.getListaAdyacencia();
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        int radio = 20;
-        int centroX = getWidth() / 2;
-        int centroY = getHeight() / 2;
-        int radioCirculo = 200;
+        int radio = 20; // Radio del nodo
 
-        int numVertices = listaAdyacencia.size();
-        for (int i = 0; i < numVertices; i++) {
-            double angulo = 2 * Math.PI * i / numVertices;
-            int x1 = centroX + (int) (Math.cos(angulo) * radioCirculo) - radio / 2;
-            int y1 = centroY + (int) (Math.sin(angulo) * radioCirculo) - radio / 2;
+        // Dibujar aristas
+        for (int i = 0; i < posicionesNodos.length; i++) {
+            int x1 = posicionesNodos[i][0] + radio / 2;
+            int y1 = posicionesNodos[i][1] + radio / 2;
 
-            // Dibujar aristas
-            for (Grafo.Nodo nodo : listaAdyacencia.get(i)) {
-                double anguloDestino = 2 * Math.PI * nodo.nodo / numVertices;
-                int x2 = centroX + (int) (Math.cos(anguloDestino) * radioCirculo) - radio / 2;
-                int y2 = centroY + (int) (Math.sin(anguloDestino) * radioCirculo) - radio / 2;
+            for (Grafo.Nodo nodo : grafo.getListaAdyacencia().get(i)) {
+                int x2 = posicionesNodos[nodo.nodo][0] + radio / 2;
+                int y2 = posicionesNodos[nodo.nodo][1] + radio / 2;
 
-                // Revisar si la arista actual está en el camino más corto
-                boolean enCamino = false;
-                for (int j = 0; j < camino.size() - 1; j++) {
-                    int u = camino.get(j);
-                    int v = camino.get(j + 1);
-                    if ((i == u && nodo.nodo == v) || (i == v && nodo.nodo == u)) {
-                        enCamino = true;
-                        break;
-                    }
-                }
+                boolean enCamino = camino.contains(i) && camino.contains(nodo.nodo) &&
+                        camino.indexOf(i) == camino.indexOf(nodo.nodo) - 1 ||
+                        camino.indexOf(i) == camino.indexOf(nodo.nodo) + 1;
 
-                // Resaltar arista en camino
                 if (enCamino) {
-                    g.setColor(Color.RED);
+                    g2d.setStroke(new BasicStroke(3));
+                    g2d.setColor(Color.RED);
+                } else {
+                    g2d.setStroke(new BasicStroke(1));
+                    g2d.setColor(Color.BLACK);
                 }
-                g.drawLine(x1 + radio / 2, y1 + radio / 2, x2 + radio / 2, y2 + radio / 2);
-                g.drawString(String.valueOf(nodo.peso), (x1 + x2) / 2, (y1 + y2) / 2);
 
-                // Resetear color
-                if (enCamino) {
-                    g.setColor(Color.BLACK);
-                }
+                g2d.drawLine(x1, y1, x2, y2);
+                g2d.drawString(String.valueOf(nodo.peso), (x1 + x2) / 2, (y1 + y2) / 2);
+
+                // Resetear color y grosor
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(1));
             }
+        }
 
-            // Dibujar nodo
+        // Dibujar nodos
+        for (int i = 0; i < posicionesNodos.length; i++) {
+            int x = posicionesNodos[i][0];
+            int y = posicionesNodos[i][1];
+
+            // El nodo de inicio es especial, digamos que es el nodo 0
             if (i == 0) {
-                g.setColor(Color.RED); // Empresa
+                g2d.setColor(Color.GREEN);
+            } else if (camino.contains(i)) {
+                g2d.setColor(Color.BLUE); // Nodos en el camino
+            } else {
+                g2d.setColor(Color.GRAY); // Nodos comunes
             }
-            g.fillOval(x1, y1, radio, radio);
-            g.setColor(Color.BLACK);
-            g.drawString(String.valueOf(i), x1 + radio / 2, y1 + radio / 2);
+
+            g2d.fillOval(x, y, radio, radio);
+            g2d.setColor(Color.WHITE);
+            g2d.drawString(String.valueOf(i), x + radio / 3, y + (radio / 2) + 5); // Centrar texto en el nodo
         }
     }
 
