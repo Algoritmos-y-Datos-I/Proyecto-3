@@ -59,10 +59,12 @@ public class VisualizadorGrafo extends JFrame {
                 int y2 = posicionesNodos[nodo.nodo][1] + radio / 2;
 
                 boolean enCamino = camino.contains(i) && camino.contains(nodo.nodo) &&
-                        camino.indexOf(i) == camino.indexOf(nodo.nodo) - 1 ||
-                        camino.indexOf(i) == camino.indexOf(nodo.nodo) + 1;
+                        (camino.indexOf(i) == camino.indexOf(nodo.nodo) - 1 ||
+                                camino.indexOf(i) == camino.indexOf(nodo.nodo) + 1);
 
-                if (enCamino) {
+                boolean caminoHaciaEmpresa = camino.contains(10) && (camino.contains(i) && i <= 10) && (camino.contains(nodo.nodo) && nodo.nodo <= 10);
+
+                if (enCamino || caminoHaciaEmpresa) {
                     g2d.setStroke(new BasicStroke(3));
                     g2d.setColor(Color.RED);
                 } else {
@@ -84,9 +86,10 @@ public class VisualizadorGrafo extends JFrame {
             int x = posicionesNodos[i][0];
             int y = posicionesNodos[i][1];
 
-            // El nodo de inicio es especial, digamos que es el nodo 0
             if (i == 0) {
-                g2d.setColor(Color.GREEN);
+                g2d.setColor(Color.GREEN); // Nodo de inicio
+            } else if (i == 10) {
+                g2d.setColor(Color.ORANGE); // Nodo de la empresa
             } else if (camino.contains(i)) {
                 g2d.setColor(Color.BLUE); // Nodos en el camino
             } else {
@@ -98,5 +101,4 @@ public class VisualizadorGrafo extends JFrame {
             g2d.drawString(String.valueOf(i), x + radio / 3, y + (radio / 2) + 5); // Centrar texto en el nodo
         }
     }
-
 }

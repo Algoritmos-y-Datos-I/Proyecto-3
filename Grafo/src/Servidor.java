@@ -100,14 +100,26 @@ public class Servidor {
         }
 
         if(origen != -1 && destino != -1) {
-            // Cambiado a usar el grafo del servidor
-            List<Integer> ruta = grafo.dijkstra(origen, destino);
-            enviarRutaAlCliente(ruta);
-            mostrarGrafo(ruta); // Agregado para mostrar el grafo
+            // Calcula la ruta del origen al destino
+            List<Integer> rutaOrigenADestino = grafo.dijkstra(origen, destino);
+
+            // Calcula la ruta del destino al nodo 0
+            List<Integer> rutaDestinoANodo0 = grafo.dijkstra(destino, 0);
+
+            // Combina las rutas
+            List<Integer> rutaCombinada = new ArrayList<>(rutaOrigenADestino);
+            rutaCombinada.addAll(rutaDestinoANodo0.subList(1, rutaDestinoANodo0.size()));
+
+            // Envía la ruta combinada al cliente y muestra el grafo
+            enviarRutaAlCliente(rutaCombinada);
+            mostrarGrafo(rutaCombinada);
+
             origen = -1;
             destino = -1;
         }
     }
+
+
 
 
     public void escribir() {
