@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -13,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * This activity is responsible for displaying the initial screen of the application
  * and providing navigation options to either register a new account or log in.
  *
- * @author Jose Barquero
+ * <p>@Author: Diego Elizondo</p>
  * @version 1.0
  */
 public class MainActivity extends AppCompatActivity {

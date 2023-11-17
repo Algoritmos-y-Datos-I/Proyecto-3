@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -15,7 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
  * It also provides buttons for different actions like viewing friends, requesting services,
  * checking grades, and logging out.</p>
  *
- * <p>Author: Jose Barquero</p>
+ * <p>@Author: Diego Elizondo</p>
+ * @version 1.4
  */
 public class PrincipalScreen extends AppCompatActivity {
 

@@ -1,0 +1,33 @@
+<!-- service_screen.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:padding="16dp"
+                tools:context=".ServiceActivity"
+                android:background="@color/grey">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarService"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/grey"
+            app:titleTextColor="@color/white"
+            android:fontFamily="monospace" android:typeface="normal"
+            android:textSize="16sp"/>
+
+    <!-- Texto para mostrar el servicio solicitado -->
+    <TextView
+        android:id="@+id/textViewService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:textSize="18sp"
+        android:layout_below="@id/toolbarService"
+        android:layout_centerInParent="true"
+        android:fontFamily="monospace" android:typeface="normal"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>
+

@@ -4,16 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
-
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,7 +18,8 @@ import org.json.JSONObject;
  * the provided information, saves the JSON object to a file, and displays a toast message with the
  * registration details.</p>
  *
- * <p>Author: Jose Barquero</p>
+ * <p>@Author: Diego Elizondo</p>
+ * @version 1.1
  */
 public class RegisterActivity extends AppCompatActivity {
 

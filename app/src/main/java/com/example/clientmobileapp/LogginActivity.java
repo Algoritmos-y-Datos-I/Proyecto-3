@@ -1,27 +1,25 @@
 package com.example.clientmobileapp;
 
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * LogginActivity represents the user login screen.
  *
- * <p>This activity allows users to enter their student ID (carnet) and name.
+ * <p>This activity allows users to enter their student ID and name.
  * Upon clicking the "Iniciar Sesión" button, it validates the input, creates a JSON object with
  * the provided information, and displays a toast message with the student ID and name.</p>
  *
- * <p>Author: Jose Barquero</p>
+ * <p>Author: Diego Elizondo</p>
  */
 public class LogginActivity extends AppCompatActivity {
 
