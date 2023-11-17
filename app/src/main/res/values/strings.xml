@@ -1,0 +1,18 @@
+<resources>
+	<string name="app_name">Proyecto_3</string>
+	<string name="login">Login</string>
+	<string name="sign_in">Sign In</string>
+	<string name="carpooling_server">Carpooling Server</string>
+	<string name="habilitar_carpooling">Habilitar Carpooling</string>
+	<string name="enter_your_name">Enter your Name</string>
+	<string name="sign_up">Sign Up</string>
+	<string name="name">Name\n</string>
+	<string name="id">ID</string>
+	<string name="ID">ID</string>
+	<string name="register">Register</string>
+	<string name="residence">Residence</string>
+	<string name="solicitar_servicio">Solicitar Servicio</string>
+	<string name="amigos">Amigos</string>
+	<string name="calificaci_n">Calificación</string>
+	<string name="cerrar_sesi_n">Cerrar Sesión</string>
+</resources>
