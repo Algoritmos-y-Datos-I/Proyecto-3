@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cantones">
+        <item>San José</item>
+        <item>Escazú</item>
+        <item>Desamparados</item>
+        <item>Puriscal</item>
+        <item>Tarrazú</item>
+        <item>Aserrí</item>
+        <item>Mora</item>
+        <item>Goicoechea</item>
+        <item>Santa Ana</item>
+        <item>Alajuelita</item>
+        <item>Vázquez de Coronado</item>
+        <item>Acosta</item>
+        <item>Tibás</item>
+        <item>Moravia</item>
+        <item>Montes de Oca</item>
+        <item>Turrubares</item>
+        <item>Dota</item>
+        <item>Curridabat</item>
+        <item>Pérez Zeledón</item>
+        <item>Empresa</item>
+        <item>Heredia</item>
+        <item>Barva</item>
+        <item>Santo Domingo</item>
+        <item>Santa Bárbara</item>
+        <item>San Rafael</item>
+        <item>San Isidro</item>
+        <item>Belén</item>
+        <item>Flores</item>
+        <item>San Pablo</item>
+        <item>Sarapiquí</item>
+        <item>Alajuela</item>
+        <item>San Ramón</item>
+        <item>Grecia</item>
+        <item>San Mateo</item>
+        <item>Atenas</item>
+        <item>Naranjo</item>
+        <item>Palmares</item>
+        <item>Poás</item>
+        <item>Orotina</item>
+        <item>San Carlos</item>
+        <item>Los Chiles</item>
+    </string-array>
+</resources>
