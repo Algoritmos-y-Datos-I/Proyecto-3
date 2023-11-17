@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".PrincipalScreen"
+    android:background="@color/black">
+
+    <TextView
+            android:id="@+id/welcomeMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true" android:layout_marginTop="14dp" android:fontFamily="monospace"
+            android:textSize="21sp" android:textColor="@color/white" android:textAlignment="center"/>
+
+    <Button
+            android:id="@+id/buttonAmigos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amigos"
+            android:layout_below="@id/welcomeMessage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="16dp" android:fontFamily="monospace" android:typeface="normal"
+            android:textSize="16sp" android:textAlignment="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/blue"/>
+    <Button
+            android:id="@+id/buttonSolicitarServicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Solicitar Servicio"
+            android:layout_below="@id/buttonAmigos"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" android:fontFamily="monospace" android:typeface="normal"
+            android:textSize="16sp" android:textColor="@color/white" android:textAlignment="center"
+            android:backgroundTint="@color/blue"/>
+
+    <Button
+            android:id="@+id/buttonCalificacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calificación"
+            android:layout_below="@id/buttonSolicitarServicio"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp" android:textAlignment="center" android:textColor="@color/white"
+            android:textSize="16sp" android:typeface="normal" android:fontFamily="monospace"
+            android:backgroundTint="@color/blue"/>
+
+    <Button
+            android:id="@+id/buttonCerrarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesión"
+            android:layout_below="@+id/buttonCalificacion"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp" android:textSize="16sp" android:typeface="normal"
+            android:fontFamily="monospace" android:textColor="@color/white" android:textAlignment="center"
+            android:backgroundTint="@color/blue"/>
+
+</RelativeLayout>
