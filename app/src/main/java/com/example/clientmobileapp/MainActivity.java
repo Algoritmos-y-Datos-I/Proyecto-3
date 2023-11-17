@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * This activity is responsible for displaying the initial screen of the application
  * and providing navigation options to either register a new account or log in.
  *
- * @author Diego Elizondo
+ * @author Jose Barquero
  * @version 1.0
  */
 public class MainActivity extends AppCompatActivity {

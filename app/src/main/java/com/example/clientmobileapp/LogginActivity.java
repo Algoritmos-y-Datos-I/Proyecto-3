@@ -21,7 +21,7 @@ import org.json.JSONObject;
  * Upon clicking the "Iniciar Sesión" button, it validates the input, creates a JSON object with
  * the provided information, and displays a toast message with the student ID and name.</p>
  *
- * <p>Author: Diego Elizondo</p>
+ * <p>Author: Jose Barquero</p>
  */
 public class LogginActivity extends AppCompatActivity {
 

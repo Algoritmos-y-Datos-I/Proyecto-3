@@ -2,66 +2,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="16dp"
                 tools:context=".LogginActivity"
-                android:background="@color/black">
+                android:background="@color/grey">
 
     <!-- Toolbar -->
+
+    <!-- Campo de texto para el número de carnet -->
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarLoggin"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:backgroundTint="@color/black"
-            app:titleTextColor="@color/white"
+            android:layout_marginLeft="52dp" android:layout_marginTop="-200dp"
+            android:layout_marginStart="52dp"
+            android:background="@color/grey"
+            android:textColor="@color/white"
             android:fontFamily="monospace" android:typeface="normal"
-            android:textSize="16sp" android:textAlignment="center"/>
-
-    <!-- Campo de texto para el número de carnet -->
+            android:textSize="16sp" android:layout_alignParentEnd="true" android:layout_marginEnd="52dp"/>
     <EditText
-        android:id="@+id/editTextCarnet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbarLoggin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:hint="Número de ID"
-        android:textColorHint="@color/white"
-        android:fontFamily="monospace" android:typeface="normal"
-        android:textSize="16sp" android:textAlignment="center"
-        android:inputType="text"
-        android:minHeight="48dp" />
+            android:id="@+id/editTextNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextCarnet"
+            android:layout_marginBottom="16dp"
+            android:hint="Nombre"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:fontFamily="monospace" android:typeface="normal"
+            android:textSize="17sp"
+            android:inputType="text"
+            android:minHeight="48dp" android:layout_alignParentEnd="true" android:layout_marginEnd="16dp"
+            android:layout_alignParentStart="true" android:layout_marginStart="16dp"/>
 
     <!-- Campo de texto para el nombre -->
     <EditText
-        android:id="@+id/editTextNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextCarnet"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:hint="Nombre"
-        android:textColorHint="@color/white"
-        android:fontFamily="monospace" android:typeface="normal"
-        android:textSize="16sp" android:textAlignment="center"
-        android:inputType="text"
-        android:minHeight="48dp" />
+            android:id="@+id/editTextCarnet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbarLoggin"
+            android:layout_marginTop="16dp"
+            android:hint="Número de ID"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:background="@color/grey"
+            android:fontFamily="monospace" android:typeface="normal"
+            android:textSize="16sp"
+            android:inputType="text"
+            android:minHeight="48dp" android:layout_alignParentEnd="true" android:layout_marginEnd="16dp"
+            android:layout_alignParentStart="true" android:layout_marginStart="16dp"/>
 
     <!-- Botón para iniciar sesión -->
     <Button
-        android:id="@+id/buttonIniciarSesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
-        android:layout_below="@id/editTextNombre"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" android:fontFamily="monospace" android:typeface="normal"
-        android:textSize="16sp" android:textAlignment="center"
-        android:backgroundTint="@color/blue"/>
+            android:id="@+id/buttonIniciarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Sesión"
+            android:backgroundTint="#010A4E"
+            android:textColor="@color/white"
+            android:fontFamily="monospace" android:typeface="normal"
+            android:textSize="16sp"
+            android:layout_below="@id/editTextNombre"
+            android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

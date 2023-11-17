@@ -15,9 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
  * It also provides buttons for different actions like viewing friends, requesting services,
  * checking grades, and logging out.</p>
  *
- * <p>Author: Diego Elizondo</p>
+ * <p>Author: Jose Barquero</p>
  */
 public class PrincipalScreen extends AppCompatActivity {
+
+    private String carnet;
+    private String nombre;
 
     /**
      * Called when the activity is starting.
@@ -35,11 +38,11 @@ public class PrincipalScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.principal_screen);
 
-        // Get data from the Inten
+        // Get data from the Intent
         Intent intent = getIntent();
         if (intent.hasExtra("carnet") && intent.hasExtra("nombre")) {
-            String carnet = intent.getStringExtra("carnet");
-            String nombre = intent.getStringExtra("nombre");
+            carnet = intent.getStringExtra("carnet");
+            nombre = intent.getStringExtra("nombre");
 
             // Update the welcome message
             TextView welcomeMessage = findViewById(R.id.welcomeMessage);
@@ -54,17 +57,26 @@ public class PrincipalScreen extends AppCompatActivity {
         Button buttonCalificacion = findViewById(R.id.buttonCalificacion);
         Button buttonCerrarSesion = findViewById(R.id.buttonCerrarSesion);
 
+        // Set up click listener for "Amigos" button
         buttonAmigos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Logic for the "Friends" button
+                // Navigate to FriendsActivity and pass user data
+                Intent intent = new Intent(PrincipalScreen.this, FriendsActivity.class);
+                intent.putExtra("nombre", nombre);
+                intent.putExtra("carnet", carnet);
+                startActivity(intent);
             }
         });
 
         buttonSolicitarServicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Logic for the "Request Service" button
+                // Navigate to ServiceActivity and pass user data
+                Intent intent = new Intent(PrincipalScreen.this, ServiceActivity.class);
+                intent.putExtra("nombre", nombre);
+                intent.putExtra("carnet", carnet);
+                startActivity(intent);
             }
         });
 
@@ -72,6 +84,14 @@ public class PrincipalScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Logic for the "Grades" button
+                Intent intent = new Intent(PrincipalScreen.this, GradeActivity.class);
+
+                // Puts additional data into the Intent
+                intent.putExtra("carnet", carnet);
+                intent.putExtra("nombre", nombre);
+
+                //Initialize the activity GradeActivity
+                startActivity(intent);
             }
         });
 

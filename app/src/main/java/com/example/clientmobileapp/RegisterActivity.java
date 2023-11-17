@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,13 +25,14 @@ import org.json.JSONObject;
  * the provided information, saves the JSON object to a file, and displays a toast message with the
  * registration details.</p>
  *
- * <p>Author: Diego Elizondo</p>
+ * <p>Author: Jose Barquero</p>
  */
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText editTextNombre;
     private EditText editTextCarnet;
-    private EditText editTextResidencia;
+    private Spinner spinnerResidencia;
+    private Boolean isDriver;
 
     /**
      * Called when the activity is starting.
@@ -54,8 +58,33 @@ public class RegisterActivity extends AppCompatActivity {
         // Initialize views
         editTextNombre = findViewById(R.id.editTextNombre);
         editTextCarnet = findViewById(R.id.editTextCarnet);
-        editTextResidencia = findViewById(R.id.editTextResidencia);
+        spinnerResidencia = findViewById(R.id.spinnerResidencia);
         Button buttonCrearCuenta = findViewById(R.id.buttonCrearCuenta);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.cantones, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinnerResidencia.setAdapter(adapter);
+
+        // Set up the listener to handle item selection
+        spinnerResidencia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Handle the selection
+                String selectedResidencia = parentView.getItemAtPosition(position).toString();
+                Toast.makeText(RegisterActivity.this, "Residencia seleccionada: " + selectedResidencia, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Called when no item is selected
+            }
+        });
 
         // Set up click listener for "Crear Cuenta" button
         buttonCrearCuenta.setOnClickListener(new View.OnClickListener() {
@@ -64,9 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
                 // Get the text from the input fields
                 String nombre = editTextNombre.getText().toString();
                 String carnet = editTextCarnet.getText().toString();
-                String residencia = editTextResidencia.getText().toString();
 
-                if (nombre.isEmpty() || carnet.isEmpty() || residencia.isEmpty()){
+                if (nombre.isEmpty() || carnet.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -83,19 +111,16 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Validate that the residence contains only letters
-                if (!isValidResidencia(residencia)) {
-                    Toast.makeText(RegisterActivity.this, "Residence should only contain letters", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
+                String residenciaSeleccionada = spinnerResidencia.getSelectedItem().toString();
+                isDriver=Boolean.FALSE;
                 // Create a JSON object with the validated data
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("message","register");
+                    jsonObject.put("bool",isDriver);
                     jsonObject.put("nombre", nombre);
                     jsonObject.put("carnet", carnet);
-                    jsonObject.put("residencia", residencia);
+                    jsonObject.put("residencia", residenciaSeleccionada);
 
                     Toast.makeText(RegisterActivity.this, "Data sended", Toast.LENGTH_LONG).show();
 
